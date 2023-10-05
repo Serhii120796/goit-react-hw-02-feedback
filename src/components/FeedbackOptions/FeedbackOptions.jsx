@@ -1,7 +1,17 @@
-export const FeedbackOptions = ({ options: {good, neutral, bad}, onLeaveFeedback }) => {
-return (<ul>
-        <li><button type="button" onClick={() => onLeaveFeedback("good")}>Good</button></li>
-        <li><button type="button" onClick={() => onLeaveFeedback("neutral")}>Neutral</button></li>
-        <li><button type="button" onClick={() => onLeaveFeedback("bad")}>Bad</button></li>
-      </ul>);
-}
+import styles from './FeedbackOptions.module.css';
+
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => (
+  <ul className={styles['options-list']}>
+    {options.map((option, idx) => (
+      <li key={idx}>
+        <button
+          className={styles.button}
+          type="button"
+          onClick={() => onLeaveFeedback(option)}
+        >
+          {option}
+        </button>
+      </li>
+    ))}
+  </ul>
+);

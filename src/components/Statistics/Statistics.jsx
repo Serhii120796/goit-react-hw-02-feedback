@@ -1,21 +1,37 @@
-export const Statistics = ({good, neutral, bad, total, positivePercentage}) => {
-    
-    return (<ul>
-        <li>
-            <p>Good: {good}</p>
+import { Notification } from '../Notification/Notification';
+import styles from './Statistics.module.css';
+
+export const Statistics = ({
+  good,
+  neutral,
+  bad,
+  total,
+  positivePercentage,
+}) => (
+  <>
+    <h2 className={styles.title}>Statistics</h2>
+    {total() === 0 ? (
+      <Notification message="There is no feedback" />
+    ) : (
+      <ul>
+        <li className={styles['list-item']}>
+          <p className={styles['statistic-date']}>Good: {good}</p>
         </li>
-        <li>
-            <p>Neutral: {neutral}</p>
+        <li className={styles['list-item']}>
+          <p className={styles['statistic-date']}>Neutral: {neutral}</p>
         </li>
-        <li>
-            <p>Bad: {bad}</p>
+        <li className={styles['list-item']}>
+          <p className={styles['statistic-date']}>Bad: {bad}</p>
         </li>
-        <li>
-            <p>Total: {total(good, neutral, bad)}</p>
+        <li className={styles['list-item']}>
+          <p className={styles['statistic-date']}>Total: {total()}</p>
         </li>
-        <li>
-            <p>Positive feedback: {positivePercentage(good, neutral, bad)}%</p>
+        <li className={styles['list-item']}>
+          <p className={styles['statistic-date']}>
+            Positive feedback: {positivePercentage(total)}%
+          </p>
         </li>
-    </ul>)
-    
-}
+      </ul>
+    )}
+  </>
+);
